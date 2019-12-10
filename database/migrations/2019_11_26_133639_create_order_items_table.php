@@ -21,6 +21,7 @@ class CreateOrderItemsTable extends Migration
             $table->bigInteger('merchandise_id')->unsigned();
             $table->string('buy_count');
             $table->string('total_price');
+            $table->text('address');
             $table->timestamps();
             $table->foreign('merchandise_id')
                     ->references("id")->on('merchandises')

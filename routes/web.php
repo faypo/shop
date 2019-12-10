@@ -18,3 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/upload', 'HomeController@upload')->name('upload');
+
+Route::get('/merchandise/{id}', 'HomeController@getMerchandise')->name('getpic');
+
+Route::get('/show', 'HomeController@showMerchandise')->name('show');
+
+Route::get('show/{id}', 'HomeController@showOne');
+
+Route::post('/order', 'HomeController@order')->name('order');

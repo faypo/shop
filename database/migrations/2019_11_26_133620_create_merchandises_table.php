@@ -17,12 +17,14 @@ class CreateMerchandisesTable extends Migration
 	{
 		Schema::create('merchandises', function(Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->string('name');
-            $table->string('status');
+            $table->integer('status')->default(0);
             $table->string('introduction');
-            $table->string('stock_count');
+            $table->integer('stock_count')->default(0);
             $table->string('price');
+            $table->text('picture')->nullable();
+            $table->string('pic_type')->nullable();
             $table->timestamps();
 		});
 	}

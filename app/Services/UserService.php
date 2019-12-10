@@ -9,26 +9,26 @@ class UserService
 {
     private $userRepository;
 
-    public function __construct(
-        UserRepository $userRepository
-    ) {
+    public function __construct(UserRepository $userRepository)
+    {
         $this->userRepository = $userRepository;
+
     }
 
-    public function attemptLogin($account, $password)
-    {
-        $status = false;
-        $user = $this->userRepository
-            ->findWhere([
-                'account' => $account,
-            ])
-            ->first();
-        if (!is_null($user) && Hash::check($password, $user->password)) {
-            Auth::login($user);
-            $status = true;
-        }
-        return $status;
-    }
+//    public function attemptLogin($email, $password)
+//    {
+//        $status = false;
+//        $user = $this->userRepository
+//            ->findWhere([
+//                'email' => $email,
+//            ])
+//            ->first();
+//        if (!is_null($user) && Hash::check($password, $user->password)) {
+//            Auth::login($user);
+//            $status = true;
+//        }
+//        return $status;
+//    }
 
 
 }

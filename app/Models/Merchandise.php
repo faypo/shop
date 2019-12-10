@@ -27,6 +27,7 @@ class Merchandise extends Model implements Transformable
     protected $fillable = [
         'type','name','status',
         'introduction','stock_count','price',
+        'picture',
     ];
 
     /**
@@ -35,7 +36,7 @@ class Merchandise extends Model implements Transformable
      * @var array
      */
     protected $hidden = [
-        'password',
+
     ];
     /**
      * The attributes that are mass assignable.
