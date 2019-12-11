@@ -22,7 +22,7 @@
 
                             </div>
 
-                            <form role="form" method="post" action="{{route('order')}}" enctype="multipart/form-data">
+                            <form role="form" method="post" action="{{route('order', ['id'=>$col->id])}}" enctype="multipart/form-data">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="orderCnt">數量</label>
