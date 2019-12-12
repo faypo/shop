@@ -111,11 +111,17 @@ class HomeController extends Controller
         $orderId = $this->orderServ->getOrderId();
 
 //        dd($orderId,$id,$order['orderCnt'],$order['orderAdd'],$price);
-        $this->orderServ->creatOrderItem(
-            $orderId, "1", $order['orderCnt'],
-            $price, $order['orderAdd']
-        );
+        $this->orderServ->creatOrderItem([
+            'order_id'       =>$orderId,
+            'merchandise_id' =>$id,
+            'user_email'     =>$uEmail,
+            'size'           =>$order['orderSize'],
+            'buy_count'      =>$order['orderCnt'],
+            'total_price'    =>$price,
+            'address'        =>$order['orderAdd'],
+        ]);
 
+        return view();
     }
 
 

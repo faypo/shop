@@ -22,15 +22,8 @@ class OrderService
         ]);
     }
 
-    public function creatOrderItem($orderId, $merchId, $merchCount, $tPrice, $address){
-        $this->orderItemReo->create([
-            'order_id'       =>$orderId,
-            'merchandise_id' =>$merchId,
-            'buy_count'      =>$merchCount,
-            'total_price'    =>$tPrice,
-            'address'        =>$address,
-
-        ]);
+    public function creatOrderItem(array $fieldData){
+        $this->orderItemReo->create($fieldData);
     }
 
     public function getOrderId(){
