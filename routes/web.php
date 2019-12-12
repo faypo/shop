@@ -27,4 +27,4 @@ Route::get('/show', 'HomeController@showMerchandise')->name('show');
 
 Route::get('show/{id}', 'HomeController@showOne');
 
-Route::post('/order', 'HomeController@order')->name('order');
+Route::post('order/{id}', 'HomeController@order')->name('order');
