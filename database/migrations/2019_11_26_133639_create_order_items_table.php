@@ -19,6 +19,8 @@ class CreateOrderItemsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('order_id')->unsigned();
             $table->bigInteger('merchandise_id')->unsigned();
+            $table->string('user_email');
+            $table->string('size');
             $table->string('buy_count');
             $table->string('total_price');
             $table->text('address');
@@ -28,6 +30,9 @@ class CreateOrderItemsTable extends Migration
                     ->onDelete("cascade")->onUpdate("cascade");
             $table->foreign('order_id')
                     ->references('id')->on('orders')
+                    ->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign('user_email')
+                    ->references('email')->on('users')
                     ->onDelete("cascade")->onUpdate("cascade");
 		});
 	}

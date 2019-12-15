@@ -103,19 +103,29 @@ class HomeController extends Controller
     public function order($id, Request $request)
     {
         $uEmail = Auth::user()->email;
-//        dd($uEmail);
+//        $showOrder = $this->orderServ->getOrderitem($uEmail);
+//        dd($showOrder);
+
         $db = $this->merchServ->getMerchandise($id)->first();
         $price = $db->price * $request->orderCnt;
         $order =$request->all();
         $this->orderServ->creatOrder($uEmail);
         $orderId = $this->orderServ->getOrderId();
+        $this->orderServ->creatOrderItem([
+            'order_id'       =>$orderId,
+            'merchandise_id' =>$id,
+            'user_email'     =>$uEmail,
+            'size'           =>$order['orderSize'],
+            'buy_count'      =>$order['orderCnt'],
+            'total_price'    =>$price,
+            'address'        =>$order['orderAdd'],
+        ]);
 
-//        dd($orderId,$id,$order['orderCnt'],$order['orderAdd'],$price);
-        $this->orderServ->creatOrderItem(
-            $orderId, "1", $order['orderCnt'],
-            $price, $order['orderAdd']
-        );
+        $showOrder = $this->orderServ->getOrderitem($uEmail);
 
+        return view("include.order",[
+            'order'=>$showOrder
+        ]);
     }
 
 
