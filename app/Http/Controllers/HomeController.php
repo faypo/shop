@@ -103,14 +103,14 @@ class HomeController extends Controller
     public function order($id, Request $request)
     {
         $uEmail = Auth::user()->email;
-//        dd($uEmail);
+//        $showOrder = $this->orderServ->getOrderitem($uEmail);
+//        dd($showOrder);
+
         $db = $this->merchServ->getMerchandise($id)->first();
         $price = $db->price * $request->orderCnt;
         $order =$request->all();
         $this->orderServ->creatOrder($uEmail);
         $orderId = $this->orderServ->getOrderId();
-
-//        dd($orderId,$id,$order['orderCnt'],$order['orderAdd'],$price);
         $this->orderServ->creatOrderItem([
             'order_id'       =>$orderId,
             'merchandise_id' =>$id,
@@ -121,7 +121,11 @@ class HomeController extends Controller
             'address'        =>$order['orderAdd'],
         ]);
 
-        return view();
+        $showOrder = $this->orderServ->getOrderitem($uEmail);
+
+        return view("include.order",[
+            'order'=>$showOrder
+        ]);
     }
 
 

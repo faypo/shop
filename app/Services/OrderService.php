@@ -37,13 +37,9 @@ class OrderService
 
     }
 
-    public function getOrderitem(){
-        return $this->orderItemReo->get([
-            'order_id',
-            'merchandise_id',
-            'total_price',
-            'address',
-            'created_at',
+    public function getOrderitem($email){
+        return $this->orderItemReo->findWhere([
+            'user_email'=> $email
         ]);
     }
 
