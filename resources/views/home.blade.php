@@ -3,12 +3,12 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+
 @stop
 
 @section('content')
-    @include('include.table')
-    {{--    <p>You are logged in!</p>--}}
+       @include('include.show')
+{{--        <p>You are logged in!</p>--}}
 @stop
 
 

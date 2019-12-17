@@ -1,3 +1,5 @@
+@extends('adminlte::page')
+@section('content')
     <div class = "col-md-7">
         <div class="box box-primary">
         <div class="box-header with-border">
@@ -68,3 +70,4 @@
             </div>
         </div>
     @endif
+@stop

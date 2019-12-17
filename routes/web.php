@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/upload', 'HomeController@gettable');
+
 Route::post('/upload', 'HomeController@upload')->name('upload');
 
 Route::get('/merchandise/{id}', 'HomeController@getMerchandise')->name('getpic');
