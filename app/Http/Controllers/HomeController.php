@@ -48,34 +48,47 @@ class HomeController extends Controller
 
     public function gettable()
     {
-        return view("include.table");
+        if (Auth::user()->permission == 'H') {
+            return view("include.table");
+        }
+        $db = $this->merchServ->showMerchandise();
+        return view("home", [
+            'merch' => $db
+        ]);
+
     }
 
     public function upload(Request $request)
     {
 
-        $Merchanise = new Merchandise();
-        $fileName = $_FILES['merchPic']['name'];
-        $tmpname = $_FILES['merchPic']['tmp_name'];
-        $filetype = $_FILES['merchPic']['type'];
-        $filesize = $_FILES['merchPic']['size'];
-        $file = null;
+        if (Auth::user()->permission == 'H') {
+            $Merchanise = new Merchandise();
+            $fileName = $_FILES['merchPic']['name'];
+            $tmpname = $_FILES['merchPic']['tmp_name'];
+            $filetype = $_FILES['merchPic']['type'];
+            $filesize = $_FILES['merchPic']['size'];
+            $file = null;
 
-        $file = File::get($tmpname);
-        $type = File::mimeType($tmpname);
+            $file = File::get($tmpname);
+            $type = File::mimeType($tmpname);
 //
 //        $response = Response::make($file, 200);
 //        $response->header("Content-Type", $type);
 //        return $response;
 
-        $data = $request->all();  // array
-        $this->merchServ
-            ->createMerchandise(
-                $data['merchName'], $data['merchPrice']
-                , $data['merchIntro'], $data['merchType']
-                , base64_encode($file), $type
-            );
-        return view("include.table", $data);
+            $data = $request->all();  // array
+            $this->merchServ
+                ->createMerchandise(
+                    $data['merchName'], $data['merchPrice']
+                    , $data['merchIntro'], $data['merchType']
+                    , base64_encode($file), $type
+                );
+            return view("include.table", $data);
+        }
+        $db = $this->merchServ->showMerchandise();
+        return view("home", [
+            'merch' => $db
+        ]);
     }
 
     public function getMerchandise($id)
