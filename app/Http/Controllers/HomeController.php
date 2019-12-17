@@ -35,7 +35,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $db = $this->merchServ->showMerchandise();
+        return view("home", [
+            'merch' => $db
+        ]);
     }
 
     public function merchandise()
@@ -43,8 +46,14 @@ class HomeController extends Controller
         return $this->merchServ;
     }
 
+    public function gettable()
+    {
+        return view("include.table");
+    }
+
     public function upload(Request $request)
     {
+
         $Merchanise = new Merchandise();
         $fileName = $_FILES['merchPic']['name'];
         $tmpname = $_FILES['merchPic']['tmp_name'];
@@ -66,7 +75,7 @@ class HomeController extends Controller
                 , $data['merchIntro'], $data['merchType']
                 , base64_encode($file), $type
             );
-        return view("home", $data);
+        return view("include.table", $data);
     }
 
     public function getMerchandise($id)

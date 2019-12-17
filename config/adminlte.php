@@ -142,7 +142,12 @@ return [
             'text'        => 'show',
             'url'         => 'http://laravel.test/show',
             'icon'        => 'far fa-file',
-            'label'       => 0,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'upload',
+            'url'         => 'http://laravel.test/upload',
+            'icon'        => 'far fa-file',
             'label_color' => 'success',
         ],
         ['header' => 'account_settings'],
